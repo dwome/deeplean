@@ -1,0 +1,219 @@
+body {
+  padding-top: 50px;
+}
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  padding-top: 70px;
+}
+footer {
+  padding: 30px 0;
+}
+
+.container-fluid{
+  height: 100%;
+  width: 100%;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ * Greater thav 768px shows the menu by default and also flips the semantics
+ * The issue is to show menu for large screens and to hide for small
+ * Also need to do something clever to turn off the tabs for when the navigation is hidden
+ * Otherwise keyboard users cannot find the focus point
+ * (For now I will ignore that for mobile users and also not worry about
+ * screen re-sizing popping the menu out.)
+ */
+@media screen and (min-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+    height: 70%;
+  }
+
+  .row-offcanvas-right {
+    right: 25%;
+  }
+
+  .row-offcanvas-left {
+    left: 25%;
+  }
+
+  .row-offcanvas-right .sidebar-offcanvas {
+    right: -25%; /* 3 columns */
+
+  }
+
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -25%; /* 3 columns */
+
+  }
+
+  .row-offcanvas-right.active {
+    right: 0; /* 3 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 0; /* 3 columns */
+  }
+
+  .row-offcanvas-right.active .sidebar-offcanvas {
+
+  }
+  .row-offcanvas-left.active .sidebar-offcanvas {
+
+  }
+
+  .row-offcanvas .content {
+    width: 75%; /* 9 columns */
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+    background-color: #e6e6e8;
+
+  }
+
+  .row-offcanvas.active .content {
+    width: 100%; /* 12 columns */
+  }
+
+  .sidebar-offcanvas {
+    background-color: #c43235;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 25%; /* 3 columns */
+  }
+}
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+
+
+}
+.properties{
+  height: 25%;
+  background-color: yellow;
+}
+
+
+/* Style the header with a grey background and some padding */
+.header {
+  background-color: #300032;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header div.logo {
+  margin-left: 10px;
+  font-size: 35px;
+  font-weight: bold;
+  color: white;
+}
+
+.logo2{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: bottom;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  margin: 0 10px 0 auto;
+}
+
+.sidebar1{
+  text-align: center;
+  margin-top: 20px;
+  height: 30%;
+}
+
+.sidebar2{
+  text-align: center;
+  margin-top: 20px;
+  height: 20%;
+}
+
+.sidebar3{
+  text-align: center;
+  margin-top: 20px;
+  height: 40%;
+}
+
+
+.modelname{
+  widows:80%;
+  height: 50px;
+}
+
+.lbl_modelname{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.divider {
+  height: 1px;
+  width:100%;
+  display:block; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+.btn_save{
+  margin-top: 5px;
+}
+

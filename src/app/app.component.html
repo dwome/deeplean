@@ -1,20 +1,96 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container-fluid">
+
+
+  <div class="row">
+    <div class="col-xs-12 header row">
+<div class="logo">DeepLean</div>
+      <div class="logo2">Cloud Based Deep Modeling</div>
+
+      <a data-toggle="offcanvas" class=" header-right btn btn-sm btn-info"><span class="glyphicon glyphicon-info-sign"></span></a>
+    </div>
+  </div>
+
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <!-- Main Content-->
+    <div class="col-xs-12 col-sm-12 content">
+
+    </div>
+
+
+    <!-- Sidebar-->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="sidebar1">
+        <label class="lbl_modelname" or="usr">Model Name</label>
+        <input type="text" class="form-control modelname" id="usr">
+
+        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+      </div>
+      <div class="divider"></div>
+
+      <div class="sidebar2">
+        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Import Model</button>
+        <div>Import an existing LML model</div>
+
+        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Export Model</button>
+        <div>Export the currently active Model</div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="sidebar3">
+        Recent Models
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            PizzaModel_New
+            <span class="badge badge-primary badge-pill">14</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            StarWars_LML
+            <span class="badge badge-primary badge-pill">2</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            VeryVeryDeepModel
+            <span class="badge badge-primary badge-pill">1</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div class="col-xs-12">
+  <div class="row properties">
+
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+          <tr>
+            <th class="text-center">
+              Property
+            </th>
+            <th class="text-center">
+              Value
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr id='addr0'>
+            <td>
+              <label or="usr">Durability</label>
+            </td>
+            <td>
+              <input type="email" name='mail[]' placeholder='Enter Mail' class="form-control"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div><!-- /.container -->
 
