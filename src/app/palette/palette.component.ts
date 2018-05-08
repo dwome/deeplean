@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModelerComponent} from "../modeler/modeler.component";
 
+
 @Component({
   selector: 'app-palette',
   templateUrl: './palette.component.html',
@@ -14,8 +15,7 @@ export class PaletteComponent implements OnInit {
   }
   instantiate(model)
   {
-    console.log(model);
-    this.modelerComp.instantiate();
+    this.modelerComp.instantiate(model);
   }
 
 }

@@ -141,12 +141,6 @@ footer {
 
 
 }
-.properties{
-  width: 100%;
-
-  border-top-color:#300032;
-  border-top-style:solid;
-}
 
 
 .header {
@@ -218,30 +212,8 @@ footer {
   margin-top: 5px;
 }
 
-.lbl_properties{
-  float: none;
-  margin: 0 auto;
-}
-
-.logo_properties{
-  font-size: 20px;
-  font-weight: bold;
-
-}
-
-.properties_container{
-  height: 25%;
+.properties{
+  width: 100%;
   background-color: #e6e6e8;
 }
 
-.properties_content
-{
-  margin-top: 20px;
-}
-
-table {
-  border-collapse: collapse;
-}
-#one td {
-  border: 5px solid #ff0000;
-}

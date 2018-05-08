@@ -9,6 +9,7 @@
   border-left: solid;
   border-right: solid;
   height: 100% !important;
+  width: 100%;
 }
 
 .nav{
@@ -24,10 +25,10 @@
 
 .btn_emendation{
   background-color: red;
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   margin-top: 10px;
-  margin-right: 10px;
+  margin-left: 10px;
   float: right;
 }

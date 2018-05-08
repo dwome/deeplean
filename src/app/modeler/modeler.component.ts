@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {PropertiesComponent} from "../properties/properties.component";
 import * as jQuery from 'jquery';
 import * as _ from 'lodash';
 import * as $ from 'backbone';
 const joint = require('../../../node_modules/jointjs/dist/joint.js');
+
+var graph;
+var rect;
+var level0;
+var level1;
+var level2;
+var levelcount;
 
 @Component({
   selector: 'app-modeler',
@@ -11,11 +19,14 @@ const joint = require('../../../node_modules/jointjs/dist/joint.js');
 })
 export class ModelerComponent implements OnInit {
 
-  constructor() {
+
+  constructor(private propComp: PropertiesComponent) {
+
   }
 
   ngOnInit() {
-    let graph = new joint.dia.Graph;
+    levelcount = 0;
+    graph = new joint.dia.Graph;
 
     let paper = new joint.dia.Paper({
       el: jQuery("#paper"),
@@ -23,10 +34,47 @@ export class ModelerComponent implements OnInit {
       gridSize: 1
     });
 
-    let rect = new joint.shapes.standard.HeaderedRectangle({
+    rect = new joint.shapes.standard.HeaderedRectangle({
       position: { x: 100, y: 30 },
-      size: { width: 100, height: 30 },
-      attrs: { rect: { fill: 'blue' }, text: { text: 'my box', fill: 'white' } }
+      size: { width: 600, height: 500 },
+      attrs: {
+        root: { title: 'DeepModel'},
+        body:{fill: 'white'},
+        header{ fill: 'lightgrey'},
+        headerText{ text: 'PizzaModel', fill:'black'},
+      }
+    });
+
+    level0 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 100, y: 60 },
+      size: { width: 600, height: 150 },
+      attrs: {
+        root: { title: 'Level'},
+        body:{fill: 'white'},
+        header{ fill: 'white'},
+        headerText{ text: 'Level O0', fill:'black'},
+      }
+    });
+
+    level1 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 100, y: 210 },
+      size: { width: 600, height: 150 },
+      attrs: {
+        root: { title: 'Level'},
+        body:{fill: 'white'},
+        header{ fill: 'white'},
+        headerText{ text: 'Level O1', fill:'black'},
+      }
+    });
+    level2 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 100, y: 360 },
+      size: { width: 600, height: 150 },
+      attrs: {
+        root: { title: 'Level'},
+        body:{fill: 'white'},
+        header{ fill: 'white'},
+        headerText{ text: 'Level O2', fill:'black'},
+      }
     });
 
     var uml = joint.shapes.uml;
@@ -68,11 +116,13 @@ export class ModelerComponent implements OnInit {
       })
 
     };
-   // _.each(states, function (c) {
-   //   graph.addCell(c);
-   // });
+    // _.each(states, function (c) {
+    //   graph.addCell(c);
+    // });
 
     states.s2.embed(states.s4);
+
+    rect.embed(level0);
 
     var linkAttrs = {
       'fill': 'none',
@@ -81,19 +131,45 @@ export class ModelerComponent implements OnInit {
       'stroke': '#4b4a67'
     };
 
-    graph.addCell(rect);
-
+    var that = this;
 
     paper.on('cell:pointerdown',
       function(cellView, evt, x, y) {
-      console.log(cellView);
+        console.log(cellView);
         console.log(cellView.model.attributes.name);
+        that.propComp.setActiveElement(cellView);
       }
     );
 
   }
-  instantiate()
+  instantiate(element)
   {
+
+    if(element === 'deepmodel')
+    {
+      graph.addCell(rect);
+    }
+
+    if(element == 'level')
+    {
+      switch(levelcount) {
+        case 0: {
+          graph.addCell(level0);
+          break;
+        }
+        case 1: {
+          graph.addCell(level1);
+          break;
+        }
+        case 2: {
+          graph.addCell(level2);
+          break;
+        }
+      }
+      levelcount++;
+
+    }
+
 
   }
 }
