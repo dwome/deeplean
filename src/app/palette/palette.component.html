@@ -1,12 +1,38 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary">Structure</button>
-      <button type="button" class="btn btn-secondary">Element</button>
-      <button type="button" class="btn btn-secondary">Connect</button>
+    <div class="btn-group nav nav-tabs" role="group">
+      <button type="button" data-toggle="tab" href="#structure" class="btn btn-secondary">Structure</button>
+      <button type="button" data-toggle="tab" href="#element" class="btn btn-secondary">Element</button>
+      <button type="button" data-toggle="tab" href="#connect" class="btn btn-secondary">Connect</button>
     </div>
     <div class="palette">
-test
+
+
+
+      <div class="tab-content">
+        <div id="structure" class="tab-pane fade in active">
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Deep Model</button>
+
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Level</button>
+        </div>
+        <div id="element" class="tab-pane fade">
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Entity</button>
+
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Attribute</button>
+            <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Method</button>
+
+        </div>
+        <div id="connect" class="tab-pane fade">
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Inheritance</button>
+
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Connection</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Supertype</button>
+
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Subtype</button>
+        </div>
+      </div>
+      <div></div>
+
 
     </div>
 

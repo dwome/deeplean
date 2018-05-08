@@ -10,6 +10,7 @@
   height: 500px;
   margin-top: 10px;
   background-color: #e6e6e8;
+
 }
 
 .btn{
@@ -18,4 +19,10 @@
   font-size: 15px;
   background-color: #e6e6e8;
   color: black;
+}
+
+
+.btn_element{
+  height: 60px;
+  margin-top: 20px;
 }

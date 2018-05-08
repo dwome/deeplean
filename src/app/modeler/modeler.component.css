@@ -21,3 +21,13 @@
   text-align: center;
   background-color: white;
 }
+
+.btn_emendation{
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
+}

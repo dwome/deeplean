@@ -239,6 +239,9 @@ footer {
   margin-top: 20px;
 }
 
-table, th, td {
-  border: 1px solid black;
+table {
+  border-collapse: collapse;
+}
+#one td {
+  border: 5px solid #ff0000;
 }

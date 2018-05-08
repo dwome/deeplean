@@ -23,6 +23,11 @@ export class ModelerComponent implements OnInit {
       gridSize: 1
     });
 
+    let rect = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 100, y: 30 },
+      size: { width: 100, height: 30 },
+      attrs: { rect: { fill: 'blue' }, text: { text: 'my box', fill: 'white' } }
+    });
 
     var uml = joint.shapes.uml;
 
@@ -50,7 +55,6 @@ export class ModelerComponent implements OnInit {
         position: {x: 100, y: 400},
         size: {width: 600, height: 100},
         name: "Level O0",
-        events: ["entry / create()"],
         attrs: {
           '.uml-state-body': {
             fill: 'rgba(48, 208, 198, 0.1)',
@@ -64,9 +68,9 @@ export class ModelerComponent implements OnInit {
       })
 
     };
-    _.each(states, function (c) {
-      graph.addCell(c);
-    });
+   // _.each(states, function (c) {
+   //   graph.addCell(c);
+   // });
 
     states.s2.embed(states.s4);
 
@@ -77,35 +81,19 @@ export class ModelerComponent implements OnInit {
       'stroke': '#4b4a67'
     };
 
-    var transitons = [
-      new uml.Transition({
-        source: {id: states.s0.id},
-        target: {id: states.s1.id},
-        attrs: {'.connection': linkAttrs}
-      }),
-      new uml.Transition({
-        source: {id: states.s1.id},
-        target: {id: states.s2.id},
-        attrs: {'.connection': linkAttrs}
-      }),
-      new uml.Transition({
-        source: {id: states.s1.id},
-        target: {id: states.s3.id},
-        attrs: {'.connection': linkAttrs}
-      }),
-      new uml.Transition({
-        source: {id: states.s3.id},
-        target: {id: states.s4.id},
-        attrs: {'.connection': linkAttrs}
-      }),
-      new uml.Transition({
-        source: {id: states.s2.id},
-        target: {id: states.se.id},
-        attrs: {'.connection': linkAttrs}
-      })
-    ];
+    graph.addCell(rect);
 
-    graph.addCells(transitons);
+
+    paper.on('cell:pointerdown',
+      function(cellView, evt, x, y) {
+      console.log(cellView);
+        console.log(cellView.model.attributes.name);
+      }
+    );
+
+  }
+  instantiate()
+  {
 
   }
 }

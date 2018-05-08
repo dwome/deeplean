@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ModelerComponent} from "../modeler/modeler.component";
 
 @Component({
   selector: 'app-palette',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaletteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modelerComp: ModelerComponent) { }
 
   ngOnInit() {
+  }
+  instantiate(model)
+  {
+    console.log(model);
+    this.modelerComp.instantiate();
   }
 
 }
