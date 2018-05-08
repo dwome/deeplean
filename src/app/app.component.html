@@ -10,12 +10,11 @@
     </div>
   </div>
 
-
   <div class="row row-offcanvas row-offcanvas-right">
 
     <!-- Main Content-->
     <div class="col-xs-12 col-sm-12 content">
-
+      <app-modeler></app-modeler>
     </div>
 
 
@@ -56,15 +55,28 @@
         </ul>
       </div>
     </div>
-
-
-
   </div>
-  <div class="col-xs-12">
-  <div class="row properties">
 
-    <div class="row clearfix">
-      <div class="col-md-12 column">
+
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <span class="logo_properties">Selected Object  </span>
+      <select class="selectpicker">
+        <option>Entity</option>
+        <option>Attribute</option>
+        <option>Connection</option>
+      </select>
+      <select class="selectpicker">
+        <option>Entity1</option>
+        <option>Entity2</option>
+        <option>Entity3</option>
+      </select>
+    </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
         <table class="table table-bordered table-hover" id="tab_logic">
           <thead>
           <tr>
@@ -82,15 +94,14 @@
               <label or="usr">Durability</label>
             </td>
             <td>
-              <input type="email" name='mail[]' placeholder='Enter Mail' class="form-control"/>
+              <input type="number" name='mail[]' placeholder='' class="form-control"/>
             </td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
-    </div>
-  </div>
+
 
 </div><!-- /.container -->
 
