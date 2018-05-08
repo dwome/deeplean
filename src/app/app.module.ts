@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ModelerComponent } from './modeler/modeler.component';
+import { PaletteComponent } from './palette/palette.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModelerComponent
+    ModelerComponent,
+    PaletteComponent
   ],
   imports: [
     BrowserModule

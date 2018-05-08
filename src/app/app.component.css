@@ -142,14 +142,13 @@ footer {
 
 }
 .properties{
-  height: 25%;
-  background-color: #e6e6e8;
+  width: 100%;
+
   border-top-color:#300032;
   border-top-style:solid;
 }
 
 
-/* Style the header with a grey background and some padding */
 .header {
   background-color: #300032;
   width: 100%;
@@ -159,7 +158,6 @@ footer {
 }
 
 
-/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
 .header div.logo {
   margin-left: 10px;
   font-size: 35px;
@@ -174,7 +172,6 @@ footer {
   color: white;
 }
 
-/* Float the link section to the right */
 .header-right {
   margin: 0 10px 0 auto;
 }
@@ -229,5 +226,19 @@ footer {
 .logo_properties{
   font-size: 20px;
   font-weight: bold;
+
 }
 
+.properties_container{
+  height: 25%;
+  background-color: #e6e6e8;
+}
+
+.properties_content
+{
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
