@@ -1,10 +1,9 @@
+![bildschirmfoto 2018-05-10 um 20 00 05](https://user-images.githubusercontent.com/14162805/39885421-d9674630-548c-11e8-9fe8-c20d85f0a117.png)
 
 # DeepLean
 
   This project represents the practical work of my seminar paper with the topic "Software infrastructure and system design challenges for a web based deep modeling tool". 
   
-  https://user-images.githubusercontent.com/14162805/39885421-d9674630-548c-11e8-9fe8-c20d85f0a117.png
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
