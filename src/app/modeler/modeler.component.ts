@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PropertiesComponent} from "../properties/properties.component";
 import * as jQuery from 'jquery';
 import * as _ from 'lodash';
 import * as $ from 'backbone';
 const joint = require('../../../node_modules/jointjs/dist/joint.js');
+import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 
 var graph;
 var rect;
@@ -19,8 +20,10 @@ var levelcount;
 })
 export class ModelerComponent implements OnInit {
 
+  @Input() elementType: string;
 
-  constructor(private propComp: PropertiesComponent) {
+
+  constructor(private propComp: PropertiesComponent, private PlaygroundService: PlaygrounddetectorService) {
 
   }
 
@@ -137,22 +140,19 @@ export class ModelerComponent implements OnInit {
       function(cellView, evt, x, y) {
         console.log(cellView);
         console.log(cellView.model.attributes.name);
-        that.propComp.setActiveElement(cellView);
+        that.PlaygroundService.updateActive(cellView);
       }
     );
 
   }
-  instantiate(element)
-  {
+  instantiate(element) {
 
-    if(element === 'deepmodel')
-    {
+    if (element === 'deepmodel') {
       graph.addCell(rect);
     }
 
-    if(element == 'level')
-    {
-      switch(levelcount) {
+    if (element == 'level') {
+      switch (levelcount) {
         case 0: {
           graph.addCell(level0);
           break;
@@ -169,7 +169,5 @@ export class ModelerComponent implements OnInit {
       levelcount++;
 
     }
-
-
   }
 }

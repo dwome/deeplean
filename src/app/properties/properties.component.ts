@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
+import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 
-var activeElement;
-var activeName;
-var elementtype;
 
 @Component({
   selector: 'app-properties',
@@ -11,17 +9,8 @@ var elementtype;
 })
 export class PropertiesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ngZone: NgZone, public PlaygroundService: PlaygrounddetectorService) { }
 
   ngOnInit() {
   }
-
-  setActiveElement(element)
-  {
-    activeElement = element;
-    activeName = activeElement.model.attributes.attrs.headerText.text;
-    elementtype = activeElement.model.attributes.attrs.root.title;
-
-  }
-
 }

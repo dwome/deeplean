@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ModelerComponent } from './modeler/modeler.component';
 import { PaletteComponent } from './palette/palette.component';
 import { PropertiesComponent } from './properties/properties.component';
+import {PlaygrounddetectorService} from "./service/playgrounddetector.service";
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -13,12 +15,13 @@ import { PropertiesComponent } from './properties/properties.component';
     AppComponent,
     ModelerComponent,
     PaletteComponent,
-    PropertiesComponent
+    PropertiesComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [PropertiesComponent],
+  providers: [PropertiesComponent, PlaygrounddetectorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
