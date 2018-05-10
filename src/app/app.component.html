@@ -19,45 +19,13 @@
 
     <!-- Sidebar-->
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-      <div class="sidebar1">
-        <label class="lbl_modelname" or="usr">Model Name</label>
-        <input type="text" class="form-control modelname" id="usr">
-
-        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
-      </div>
-      <div class="divider"></div>
-
-      <div class="sidebar2">
-        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Import Model</button>
-        <div class="lbl_port_model">Import an existing LML model</div>
-
-        <button  class="btn btn-lg btn_save"><span class="glyphicon glyphicon-floppy-disk"></span> Export Model</button>
-        <div class="lbl_port_model">Export the currently active Model</div>
-      </div>
-      <div class="divider"></div>
-
-      <div class="sidebar3">
-        Recent Models
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            PizzaModel_New
-            <span class="badge badge-primary badge-pill">Activate</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            StarWars_LML
-            <span class="badge badge-primary badge-pill">Activate</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            VeryVeryDeepModel
-            <span class="badge badge-primary badge-pill">Activate</span>
-          </li>
-        </ul>
-      </div>
+      <app-sidebar></app-sidebar>
     </div>
+
   </div>
 
   <!-- Properties -->
-  <div class="row" style="height: 25%">
+  <div class="row" style="height: 35%">
     <app-properties class="properties"></app-properties>
   </div>
 

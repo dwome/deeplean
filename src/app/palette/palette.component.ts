@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModelerComponent} from "../modeler/modeler.component";
+import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 
 
 @Component({
@@ -9,10 +10,11 @@ import {ModelerComponent} from "../modeler/modeler.component";
 })
 export class PaletteComponent implements OnInit {
 
-  constructor(private modelerComp: ModelerComponent) { }
+  constructor(private modelerComp: ModelerComponent, private PlaygroundService: PlaygrounddetectorService) { }
 
   ngOnInit() {
   }
+
   instantiate(model)
   {
     this.modelerComp.instantiate(model);

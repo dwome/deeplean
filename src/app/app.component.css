@@ -40,7 +40,7 @@ footer {
     -webkit-transition: all .25s ease-out;
     -moz-transition: all .25s ease-out;
     transition: all .25s ease-out;
-    height: 70%;
+    height: 60%;
   }
 
   .row-offcanvas-right {
@@ -170,47 +170,7 @@ footer {
   margin: 0 10px 0 auto;
 }
 
-.sidebar1{
-  text-align: center;
-  margin-top: 20px;
-  height: 30%;
-}
 
-.sidebar2{
-  text-align: center;
-  margin-top: 20px;
-  height: 20%;
-}
-
-.sidebar3{
-  text-align: center;
-  margin-top: 20px;
-  height: 40%;
-}
-
-
-.modelname{
-  widows:80%;
-  height: 50px;
-}
-
-.lbl_modelname{
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.divider {
-  height: 1px;
-  width:100%;
-  display:block; /* for use on default inline elements like span */
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-}
-
-.btn_save{
-  margin-top: 5px;
-}
 
 .properties{
   width: 100%;

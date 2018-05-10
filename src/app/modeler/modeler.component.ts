@@ -6,12 +6,7 @@ import * as $ from 'backbone';
 const joint = require('../../../node_modules/jointjs/dist/joint.js');
 import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 
-var graph;
-var rect;
-var level0;
-var level1;
-var level2;
-var levelcount;
+
 
 @Component({
   selector: 'app-modeler',
@@ -20,7 +15,15 @@ var levelcount;
 })
 export class ModelerComponent implements OnInit {
 
-  @Input() elementType: string;
+  graph:any;
+  rect:any;
+  level0:any;
+  level1:any;
+  level2:any;
+  levelcount:number;
+  deepmodelcount:number;
+
+  element:any;
 
 
   constructor(private propComp: PropertiesComponent, private PlaygroundService: PlaygrounddetectorService) {
@@ -28,17 +31,21 @@ export class ModelerComponent implements OnInit {
   }
 
   ngOnInit() {
-    levelcount = 0;
-    graph = new joint.dia.Graph;
+    this.levelcount = 0;
+    this.deepmodelcount = 0;
+    this.graph = new joint.dia.Graph;
 
     let paper = new joint.dia.Paper({
       el: jQuery("#paper"),
-      model: graph,
+      width 1500,
+      height: 700,
+      model: this.graph,
       gridSize: 1
     });
 
-    rect = new joint.shapes.standard.HeaderedRectangle({
-      position: { x: 100, y: 30 },
+    this.rect = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 250, y: 10 },
+      type: 'deepmodel',
       size: { width: 600, height: 500 },
       attrs: {
         root: { title: 'DeepModel'},
@@ -48,8 +55,9 @@ export class ModelerComponent implements OnInit {
       }
     });
 
-    level0 = new joint.shapes.standard.HeaderedRectangle({
-      position: { x: 100, y: 60 },
+    this.level0 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 250, y: 60 },
+      type: 'level',
       size: { width: 600, height: 150 },
       attrs: {
         root: { title: 'Level'},
@@ -59,8 +67,9 @@ export class ModelerComponent implements OnInit {
       }
     });
 
-    level1 = new joint.shapes.standard.HeaderedRectangle({
-      position: { x: 100, y: 210 },
+    this.level1 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 250, y: 210 },
+      type: 'level',
       size: { width: 600, height: 150 },
       attrs: {
         root: { title: 'Level'},
@@ -69,8 +78,9 @@ export class ModelerComponent implements OnInit {
         headerText{ text: 'Level O1', fill:'black'},
       }
     });
-    level2 = new joint.shapes.standard.HeaderedRectangle({
-      position: { x: 100, y: 360 },
+    this.level2 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 250, y: 360 },
+      type: 'level',
       size: { width: 600, height: 150 },
       attrs: {
         root: { title: 'Level'},
@@ -80,94 +90,55 @@ export class ModelerComponent implements OnInit {
       }
     });
 
-    var uml = joint.shapes.uml;
-
-    var states = {
-
-      s2: new uml.State({
-        position: {x: 100, y: 100},
-        size: {width: 600, height: 500},
-        name: "Pizza Model",
-        events: ["entry / create()", "exit / kill()", "A / foo()", "B / bar()"],
-        attrs: {
-          '.uml-state-body': {
-            fill: 'rgba(48, 208, 198, 0.1)',
-            stroke: 'rgba(48, 208, 198, 0.5)',
-            'stroke-width': 1.5
-          },
-          '.uml-state-separator': {
-            stroke: 'rgba(48, 208, 198, 0.4)'
-          }
-        }
-      }),
+ //   this.rect.embed(this.level0);
 
 
-      s4: new uml.State({
-        position: {x: 100, y: 400},
-        size: {width: 600, height: 100},
-        name: "Level O0",
-        attrs: {
-          '.uml-state-body': {
-            fill: 'rgba(48, 208, 198, 0.1)',
-            stroke: 'rgba(48, 208, 198, 0.5)',
-            'stroke-width': 1.5
-          },
-          '.uml-state-separator': {
-            stroke: 'rgba(48, 208, 198, 0.4)'
-          }
-        }
-      })
-
-    };
-    // _.each(states, function (c) {
-    //   graph.addCell(c);
-    // });
-
-    states.s2.embed(states.s4);
-
-    rect.embed(level0);
-
-    var linkAttrs = {
-      'fill': 'none',
-      'stroke-linejoin': 'round',
-      'stroke-width': '2',
-      'stroke': '#4b4a67'
-    };
-
-    var that = this;
+    let that = this;
 
     paper.on('cell:pointerdown',
       function(cellView, evt, x, y) {
-        console.log(cellView);
-        console.log(cellView.model.attributes.name);
-        that.PlaygroundService.updateActive(cellView);
+        that.PlaygroundService.clickElement(cellView);
       }
     );
 
   }
   instantiate(element) {
 
-    if (element === 'deepmodel') {
-      graph.addCell(rect);
+    if (element == 'deepmodel') {
+      if(this.deepmodelcount < 1)
+      {
+        console.log(this.deepmodelcount);
+        this.element = this.rect;
+        this.deepmodelcount++;
+      }
     }
-
     if (element == 'level') {
-      switch (levelcount) {
+
+      switch (this.levelcount) {
         case 0: {
-          graph.addCell(level0);
+          this.element = this.level0;
           break;
         }
         case 1: {
-          graph.addCell(level1);
+          this.element = this.level1;
           break;
         }
         case 2: {
-          graph.addCell(level2);
+          this.element = this.level2;
           break;
         }
       }
-      levelcount++;
+      this.levelcount++;
+    }
 
+
+    if(this.element != null) {
+      this.PlaygroundService.addElement(this.element);
+
+      console.log(this.element);
+      this.graph.addCell(this.element);
+
+      this.element = null;
     }
   }
 }
