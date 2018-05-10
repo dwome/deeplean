@@ -10,15 +10,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body class="root">
   <app-root></app-root>
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></head>
 
   <script>$(document).ready(function () {
@@ -26,5 +26,69 @@
   $('.row-offcanvas').toggleClass('active');
   });
   });</script>
+
+<script>
+  /**
+ *  BootTree Treeview plugin for Bootstrap.
+ *
+ *  Based on BootSnipp TreeView Example by Sean Wessell
+ *  URL:	http://bootsnipp.com/snippets/featured/bootstrap-30-treeview
+ *
+ *	Revised code by Leo "LeoV117" Myers
+ *
+ */
+$.fn.extend({
+  treeview:	function() {
+    return this.each(function() {
+      // Initialize the top levels;
+      var tree = $(this);
+
+      tree.addClass('treeview-tree');
+      tree.find('li').each(function() {
+        var stick = $(this);
+      });
+      tree.find('li').has("ul").each(function () {
+        var branch = $(this); //li with children ul
+
+        branch.prepend("<i class='tree-indicator glyphicon glyphicon-chevron-right'></i>");
+        branch.addClass('tree-branch');
+        branch.on('click', function (e) {
+          if (this == e.target) {
+            var icon = $(this).children('i:first');
+
+            icon.toggleClass("glyphicon-chevron-down glyphicon-chevron-right");
+            $(this).children().children().toggle();
+          }
+        })
+        branch.children().children().toggle();
+
+        /**
+         *	The following snippet of code enables the treeview to
+         *	function when a button, indicator or anchor is clicked.
+         *
+         *	It also prevents the default function of an anchor and
+         *	a button from firing.
+         */
+        branch.children('.tree-indicator, button, a').click(function(e) {
+          branch.click();
+
+          e.preventDefault();
+        });
+      });
+    });
+  }
+});
+
+/**
+ *	The following snippet of code automatically converst
+ *	any '.treeview' DOM elements into a treeview component.
+ */
+$(window).on('load', function () {
+  $('.treeview').each(function () {
+    var tree = $(this);
+    tree.treeview();
+  })
+})</script>
+
 </body>
 </html>

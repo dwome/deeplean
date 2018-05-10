@@ -25,7 +25,9 @@ export class PlaygrounddetectorService {
 
   getActiveElementName():String {
     if(this.activeElement != undefined)
-      return this.activeElement.model.attributes.attrs.root.title;
+    {
+      return this.activeElement.model.attributes.attrs.headerText.text;
+    }
   }
 
 
@@ -38,15 +40,12 @@ export class PlaygrounddetectorService {
   {
     //update active element
     this.activeElement = cellView;
-    console.log(this.elements);
-    console.log(this.activeElement.model.id);
-    console.log(this.elements[this.activeElement.model.id]);
 
     //update table information
     switch (this.activeElement.model.attributes.type) {
     //check element type
       case 'deepmodel': {
-        this.selectedType = 4;
+        this.selectedType = 1;
         break;
       }
       case 'level': {

@@ -22,7 +22,9 @@ export class ModelerComponent implements OnInit {
   level2:any;
   levelcount:number;
   deepmodelcount:number;
-
+  entitycount:number;
+  entity1;
+  entity2;
   element:any;
 
 
@@ -33,6 +35,7 @@ export class ModelerComponent implements OnInit {
   ngOnInit() {
     this.levelcount = 0;
     this.deepmodelcount = 0;
+    this.entitycount = 0;
     this.graph = new joint.dia.Graph;
 
     let paper = new joint.dia.Paper({
@@ -89,9 +92,29 @@ export class ModelerComponent implements OnInit {
         headerText{ text: 'Level O2', fill:'black'},
       }
     });
+    this.entity1 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 270, y: 100 },
+      type: 'entity',
+      size: { width: 200, height: 100 },
+      attrs: {
+        root: { title: 'Entity'},
+        body:{fill: 'white'},
+        header{ fill: 'white'},
+        headerText{ text: 'Pizza', fill:'black'},
+      }
+    });
 
- //   this.rect.embed(this.level0);
-
+    this.entity2 = new joint.shapes.standard.HeaderedRectangle({
+      position: { x: 600, y: 100 },
+      type: 'entity',
+      size: { width: 200, height: 100 },
+      attrs: {
+        root: { title: 'Entity'},
+        body:{fill: 'white'},
+        header{ fill: 'white'},
+        headerText{ text: 'Pizza', fill:'black'},
+      }
+    });
 
     let that = this;
 
@@ -107,37 +130,57 @@ export class ModelerComponent implements OnInit {
     if (element == 'deepmodel') {
       if(this.deepmodelcount < 1)
       {
-        console.log(this.deepmodelcount);
         this.element = this.rect;
         this.deepmodelcount++;
       }
     }
     if (element == 'level') {
-
-      switch (this.levelcount) {
-        case 0: {
-          this.element = this.level0;
-          break;
+      if(this.PlaygroundService.getActiveElementType() == 'deepmodel')
+      {
+        switch (this.levelcount) {
+          case 0: {
+            this.element = this.level0;
+            break;
+          }
+          case 1: {
+            this.element = this.level1;
+            break;
+          }
+          case 2: {
+            this.element = this.level2;
+            break;
+          }
         }
-        case 1: {
-          this.element = this.level1;
-          break;
-        }
-        case 2: {
-          this.element = this.level2;
-          break;
-        }
+        this.levelcount++;
       }
-      this.levelcount++;
+      else{
+        alert("Select a Deep Model");
+      }
+    }
+    if(element == 'entity')
+    {
+      if(this.PlaygroundService.getActiveElementType() == 'level') {
+        switch (this.entitycount) {
+          case 0: {
+            this.element = this.entity1;
+            break;
+          }
+          case 1: {
+            this.element = this.entity2;
+            break;
+          }
+        }
+        this.entitycount++;
+      }
+      else{
+        alert("Select a Level");
+      }
     }
 
 
     if(this.element != null) {
       this.PlaygroundService.addElement(this.element);
-
-      console.log(this.element);
       this.graph.addCell(this.element);
-
       this.element = null;
     }
   }

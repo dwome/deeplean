@@ -5,15 +5,50 @@
 
     <div class="row properties_content">
       <div class="col-sm-6 outline_editor">
-        <div class="logo_properties"> Outline Editor </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">DeepModel Outline</div>
+          <div class="panel-body">
+            <div class="treeview">
+              <ul>
+                <li><a href="#">DeepModel:</a>
+                  <ul>
+                    <li><a href="#">Level: O0</a>
+                      <ul>
+                        <li><a href="#">Entity:</a>
+                          <ul>
+                            <li><a href="#">Attribute: </a>
+                            <li><a href="#">Method: </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Entity:</a>
+                          <ul>
+                            <li><a href="#">Attribute: </a>
+                            <li><a href="#">Method: </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Level: O1</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+      </div>
+        </div>
       </div>
 
 
       <div class="col-sm-6">
+        <div class="emptytable" *ngIf="this.PlaygroundService.selectedType == undefined">
 
+          Please select a Deep Modeling element.
 
+        </div>
         <!-- DeepModel Table -->
-        <table class="table table-bordered table-hover" id="tab_logic">
+        <table *ngIf="this.PlaygroundService.selectedType != undefined" class="table table-bordered table-hover" id="tab_logic">
           <thead>
           <tr>
             <th class="text-center">
@@ -30,7 +65,7 @@
               <label or="usr">Name</label>
             </td>
             <td>
-              <input type="string" placeholder='Name' class="form-control"/>
+              <input type="string"  value="{{this.PlaygroundService.getActiveElementName() }}" placeholder='Name' class="form-control"/>
             </td>
           </tr>
           <tr *ngSwitchCase="this.PlaygroundService.selectedType == 3">

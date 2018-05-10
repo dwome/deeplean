@@ -6,35 +6,24 @@
       <button type="button" data-toggle="tab" href="#connect" class="btn btn-secondary">Connect</button>
     </div>
     <div class="palette">
-
-
-
       <div class="tab-content">
         <div id="structure" class="tab-pane fade in active">
           <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Deep Model</button>
-
           <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Level</button>
         </div>
         <div id="element" class="tab-pane fade">
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Entity</button>
-
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Attribute</button>
-            <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Method</button>
-
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('entity')">Entity</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('attribute')">Attribute</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('method')">Method</button>
         </div>
         <div id="connect" class="tab-pane fade">
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('deepmodel')">Inheritance</button>
-
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Connection</button>
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Supertype</button>
-
-          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('level')">Subtype</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('inheritance')">Inheritance</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('connection')">Connection</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('supertype')">Supertype</button>
+          <button class="btn_element col-sm-8 offset-sm-2" (click)="instantiate('subtype')">Subtype</button>
         </div>
       </div>
       <div></div>
-
-
     </div>
-
-      </div>
-    </div>
+  </div>
+</div>
