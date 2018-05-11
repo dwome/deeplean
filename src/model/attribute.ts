@@ -5,12 +5,7 @@ export class Attribute {
   private _durability: number;
   private _mutability: number;
 
-  constructor(name: string, datatype: string, value: string, durability: number, mutability: number) {
-    this._name = name;
-    this._datatype = datatype;
-    this._value = value;
-    this._durability = durability;
-    this._mutability = mutability;
+  constructor() {
   }
 
   get name(): string {

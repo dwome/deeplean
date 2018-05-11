@@ -2,9 +2,7 @@ export class Entity {
   private _name: string;
   private _potency: number;
 
-  constructor(name: string, potency: number) {
-    this._name = name;
-    this._potency = potency;
+  constructor() {
   }
 
   get name(): string {

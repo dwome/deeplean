@@ -3,6 +3,7 @@ import {Deepmodel} from "../../model/deepmodel";
 import {Level} from "../../model/level";
 import {Entity} from "../../model/entity";
 import {Attribute} from "../../model/attribute";
+import {ModelerComponent} from "../modeler/modeler.component";
 
 @Injectable()
 export class PlaygrounddetectorService {
@@ -11,11 +12,6 @@ export class PlaygrounddetectorService {
   elements: any[];
   elementid: number;
   activeElement: any;
-  table_deepmodel: boolean = false;
-  table_level: boolean = false;
-  table_entity: boolean = false;
-  table_attribute: boolean = false;
-  table_method: boolean = false;
   selectedType:number;
 
   constructor() {
@@ -34,6 +30,11 @@ export class PlaygrounddetectorService {
   getActiveElementType():String {
     if(this.activeElement != undefined)
       return this.activeElement.model.attributes.type;
+  }
+
+  getActiveElementID():String {
+    if(this.activeElement != undefined)
+      return this.activeElement.model.attributes.id;
   }
 
   clickElement(cellView)
@@ -62,15 +63,13 @@ export class PlaygrounddetectorService {
       }
     }
 
-    //fill with information
+    //update table content
+    console.log(this.getActiveElementID());
     }
-
-
 
   addElement(element)
   {
-
-    element.id = this.elementid;
+    element.cid = this.elementid;
     switch (element.attributes.type) {
       case 'deepmodel': {
         element = new Deepmodel();
@@ -93,9 +92,9 @@ export class PlaygrounddetectorService {
         break;
       }
     }
-
     this.elements[this.elementid] = element;
     this.elementid++;
   }
+
 
 }

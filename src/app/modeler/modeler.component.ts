@@ -26,9 +26,10 @@ export class ModelerComponent implements OnInit {
   entity1;
   entity2;
   element:any;
+  activeCell:any;
 
 
-  constructor(private propComp: PropertiesComponent, private PlaygroundService: PlaygrounddetectorService) {
+  constructor(private PlaygroundService: PlaygrounddetectorService) {
 
   }
 
@@ -40,7 +41,7 @@ export class ModelerComponent implements OnInit {
 
     let paper = new joint.dia.Paper({
       el: jQuery("#paper"),
-      width 1500,
+      width: 1500,
       height: 700,
       model: this.graph,
       gridSize: 1
@@ -53,8 +54,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'DeepModel'},
         body:{fill: 'white'},
-        header{ fill: 'lightgrey'},
-        headerText{ text: 'PizzaModel', fill:'black'},
+        header:{ fill: 'lightgrey'},
+        headerText:{ text: 'PizzaModel', fill:'black'},
       }
     });
 
@@ -65,8 +66,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'Level'},
         body:{fill: 'white'},
-        header{ fill: 'white'},
-        headerText{ text: 'Level O0', fill:'black'},
+        header:{ fill: 'white'},
+        headerText:{ text: 'Level O0', fill:'black'},
       }
     });
 
@@ -77,8 +78,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'Level'},
         body:{fill: 'white'},
-        header{ fill: 'white'},
-        headerText{ text: 'Level O1', fill:'black'},
+        header:{ fill: 'white'},
+        headerText:{ text: 'Level O1', fill:'black'},
       }
     });
     this.level2 = new joint.shapes.standard.HeaderedRectangle({
@@ -88,8 +89,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'Level'},
         body:{fill: 'white'},
-        header{ fill: 'white'},
-        headerText{ text: 'Level O2', fill:'black'},
+        header:{ fill: 'white'},
+        headerText:{ text: 'Level O2', fill:'black'},
       }
     });
     this.entity1 = new joint.shapes.standard.HeaderedRectangle({
@@ -99,8 +100,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'Entity'},
         body:{fill: 'white'},
-        header{ fill: 'white'},
-        headerText{ text: 'Pizza', fill:'black'},
+        header:{ fill: 'white'},
+        headerText:{ text: 'Pizza', fill:'black'},
       }
     });
 
@@ -111,8 +112,8 @@ export class ModelerComponent implements OnInit {
       attrs: {
         root: { title: 'Entity'},
         body:{fill: 'white'},
-        header{ fill: 'white'},
-        headerText{ text: 'Pizza', fill:'black'},
+        header:{ fill: 'white'},
+        headerText:{ text: 'Pizza', fill:'black'},
       }
     });
 
@@ -121,6 +122,8 @@ export class ModelerComponent implements OnInit {
     paper.on('cell:pointerdown',
       function(cellView, evt, x, y) {
         that.PlaygroundService.clickElement(cellView);
+        that.activeCell = cellView;
+        that.activeCell.model.attr('headerText/text', 'test');
       }
     );
 
@@ -140,14 +143,17 @@ export class ModelerComponent implements OnInit {
         switch (this.levelcount) {
           case 0: {
             this.element = this.level0;
+            this.rect.embed(this.element);
             break;
           }
           case 1: {
             this.element = this.level1;
+            this.rect.embed(this.element);
             break;
           }
           case 2: {
             this.element = this.level2;
+            this.rect.embed(this.element);
             break;
           }
         }
@@ -163,10 +169,12 @@ export class ModelerComponent implements OnInit {
         switch (this.entitycount) {
           case 0: {
             this.element = this.entity1;
+            this.level0.embed(this.element);
             break;
           }
           case 1: {
             this.element = this.entity2;
+            this.level0.embed(this.element);
             break;
           }
         }
@@ -183,5 +191,10 @@ export class ModelerComponent implements OnInit {
       this.graph.addCell(this.element);
       this.element = null;
     }
+  }
+
+  adjustName(id, name)
+  {
+   // console.log(this.graph.getCell(id));
   }
 }
