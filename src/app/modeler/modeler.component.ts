@@ -37,13 +37,13 @@ export class ModelerComponent implements OnInit {
     this.levelcount = 0;
     this.deepmodelcount = 0;
     this.entitycount = 0;
-    this.graph = new joint.dia.Graph;
+    //this.graph = new joint.dia.Graph;
 
     let paper = new joint.dia.Paper({
       el: jQuery("#paper"),
       width: 1500,
       height: 700,
-      model: this.graph,
+      model: this.PlaygroundService.graph,
       gridSize: 1
     });
 
@@ -123,11 +123,10 @@ export class ModelerComponent implements OnInit {
       function(cellView, evt, x, y) {
         that.PlaygroundService.clickElement(cellView);
         that.activeCell = cellView;
-        that.activeCell.model.attr('headerText/text', 'test');
-      }
+    }
     );
-
   }
+
   instantiate(element) {
 
     if (element == 'deepmodel') {
@@ -188,13 +187,8 @@ export class ModelerComponent implements OnInit {
 
     if(this.element != null) {
       this.PlaygroundService.addElement(this.element);
-      this.graph.addCell(this.element);
+      this.PlaygroundService.graph.addCell(this.element);
       this.element = null;
     }
-  }
-
-  adjustName(id, name)
-  {
-   // console.log(this.graph.getCell(id));
   }
 }

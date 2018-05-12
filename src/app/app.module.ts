@@ -21,7 +21,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     BrowserModule
   ],
-  providers: [PropertiesComponent, PlaygrounddetectorService],
+  providers: [PropertiesComponent, PlaygrounddetectorService, ModelerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

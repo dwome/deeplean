@@ -4,6 +4,10 @@ import {Level} from "../../model/level";
 import {Entity} from "../../model/entity";
 import {Attribute} from "../../model/attribute";
 import {ModelerComponent} from "../modeler/modeler.component";
+import * as jQuery from 'jquery';
+import * as _ from 'lodash';
+import * as $ from 'backbone';
+const joint = require('../../../node_modules/jointjs/dist/joint.js');
 
 @Injectable()
 export class PlaygrounddetectorService {
@@ -13,6 +17,7 @@ export class PlaygrounddetectorService {
   elementid: number;
   activeElement: any;
   selectedType:number;
+  graph:any = new joint.dia.Graph;
 
   constructor() {
     this.elements = [];
@@ -64,7 +69,7 @@ export class PlaygrounddetectorService {
     }
 
     //update table content
-    console.log(this.getActiveElementID());
+
     }
 
   addElement(element)
@@ -94,6 +99,11 @@ export class PlaygrounddetectorService {
     }
     this.elements[this.elementid] = element;
     this.elementid++;
+  }
+
+  updateActiveElementName(input)
+  {
+    this.activeElement.model.attr('headerText/text', input);
   }
 
 

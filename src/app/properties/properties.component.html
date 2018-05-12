@@ -65,7 +65,7 @@
               <label or="usr">Name</label>
             </td>
             <td>
-              <input type="string"  value="{{this.PlaygroundService.getActiveElementName() }}" placeholder='Name' class="form-control"/>
+              <input (change)="changeinput($event.target.value)" type="string"  value="{{this.PlaygroundService.getActiveElementName() }}" placeholder='Name' class="form-control"/>
             </td>
           </tr>
           <tr *ngSwitchCase="this.PlaygroundService.selectedType == 3">

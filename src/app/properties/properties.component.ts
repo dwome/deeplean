@@ -1,5 +1,6 @@
-import {Component, Input, NgZone, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
+import {ModelerComponent} from "../modeler/modeler.component";
 
 
 @Component({
@@ -9,8 +10,13 @@ import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 })
 export class PropertiesComponent implements OnInit {
 
-  constructor(private ngZone: NgZone, public PlaygroundService: PlaygrounddetectorService) { }
+  constructor(public PlaygroundService: PlaygrounddetectorService, public ModelComp: ModelerComponent) { }
 
   ngOnInit() {
+  }
+
+  changeinput(input)
+  {
+    this.PlaygroundService.updateActiveElementName(input);
   }
 }
