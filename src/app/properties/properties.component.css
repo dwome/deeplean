@@ -7,15 +7,12 @@
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-
 }
 
 .outline_editor{
   border-right: solid thin;
   height: 100%;
 }
-
-
 
 .properties_content
 {

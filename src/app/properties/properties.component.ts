@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
-import {ModelerComponent} from "../modeler/modeler.component";
-
 
 @Component({
   selector: 'app-properties',
@@ -10,13 +8,23 @@ import {ModelerComponent} from "../modeler/modeler.component";
 })
 export class PropertiesComponent implements OnInit {
 
-  constructor(public PlaygroundService: PlaygrounddetectorService, public ModelComp: ModelerComponent) { }
+  constructor(public PlaygroundService: PlaygrounddetectorService) { }
 
   ngOnInit() {
   }
 
-  changeinput(input)
+  // Handle Change on Properties Input
+  changeinput(input, type)
   {
-    this.PlaygroundService.updateActiveElementName(input);
+    switch (type) {
+      case 1: {
+        this.PlaygroundService.updateActiveElementName(input);
+        break;
+      }
+      case 2: {
+        this.PlaygroundService.updateValue(input);
+        break;
+      }
+    }
   }
 }

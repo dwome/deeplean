@@ -3,16 +3,11 @@ import {Deepmodel} from "../../model/deepmodel";
 import {Level} from "../../model/level";
 import {Entity} from "../../model/entity";
 import {Attribute} from "../../model/attribute";
-import {ModelerComponent} from "../modeler/modeler.component";
-import * as jQuery from 'jquery';
-import * as _ from 'lodash';
-import * as $ from 'backbone';
 const joint = require('../../../node_modules/jointjs/dist/joint.js');
 
 @Injectable()
 export class PlaygrounddetectorService {
 
-  element:any;
   elements: any[];
   elementid: number;
   activeElement: any;
@@ -27,10 +22,34 @@ export class PlaygrounddetectorService {
   getActiveElementName():String {
     if(this.activeElement != undefined)
     {
-      return this.activeElement.model.attributes.attrs.headerText.text;
+      switch (this.activeElement.model.attributes.type) {
+        case 'deepmodel': {
+          return this.activeElement.model.attributes.attrs.headerText.text;
+          break;
+        }
+        case 'level': {
+          return this.activeElement.model.attributes.attrs.headerText.text;
+          break;
+        }
+        case 'entity': {
+          return this.activeElement.model.attributes.attrs.headerText.text;
+          break;
+        }
+        case 'attribute': {
+          return this.activeElement.model.attributes.attrs.label.text.split('=')[0];
+          break;
+        }
+        case 'method': {
+          return this.activeElement.model.attributes.attrs.label.text.split('(')[0];
+          break;
+        }
+        case 'connection': {
+          return this.activeElement.model.attributes.labels[0].attrs.text.text;
+          break;
+        }
+      }
     }
   }
-
 
   getActiveElementType():String {
     if(this.activeElement != undefined)
@@ -42,14 +61,17 @@ export class PlaygrounddetectorService {
       return this.activeElement.model.attributes.id;
   }
 
+  getActiveElementValue():number{
+    if(this.activeElement != undefined)
+      return this.activeElement.model.attributes.attrs.label.text.split('=')[1];
+  }
+
   clickElement(cellView)
   {
-    //update active element
     this.activeElement = cellView;
 
-    //update table information
+    // Update Properties-Table Layout according to selected type
     switch (this.activeElement.model.attributes.type) {
-    //check element type
       case 'deepmodel': {
         this.selectedType = 1;
         break;
@@ -66,11 +88,13 @@ export class PlaygrounddetectorService {
         this.selectedType = 4;
         break;
       }
+      case 'connection': {
+        this.selectedType = 5;
+        console.log(cellView);
+        break;
+      }
     }
-
-    //update table content
-
-    }
+  }
 
   addElement(element)
   {
@@ -101,9 +125,44 @@ export class PlaygrounddetectorService {
     this.elementid++;
   }
 
+  //Update Name of JointJS Element (triggered from Properties)
   updateActiveElementName(input)
   {
-    this.activeElement.model.attr('headerText/text', input);
+    if(this.activeElement != undefined)
+    {
+      switch (this.activeElement.model.attributes.type) {
+        case 'deepmodel': {
+          this.activeElement.model.attr('headerText/text', input);
+          break;
+        }
+        case 'level': {
+          this.activeElement.model.attr('headerText/text', input);
+          break;
+        }
+        case 'entity': {
+          this.activeElement.model.attr('headerText/text', input);
+          break;
+        }
+        case 'attribute': {
+          var value = this.activeElement.model.attributes.attrs.label.text.split('=')[1];;
+          this.activeElement.model.attr('label/text', input + " = " + value);
+          break;
+        }
+        case 'method': {
+          this.activeElement.model.attr('label/text', input+"()");
+          break;
+        }
+        case 'connection': {
+          //To Be Enhanced
+          break;
+        }
+      }
+    }
+  }
+
+  updateValue(input){
+    var name = this.activeElement.model.attributes.attrs.label.text.split('=')[0];;
+    this.activeElement.model.attr('label/text', name + " = " + input);
   }
 
 

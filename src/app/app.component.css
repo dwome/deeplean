@@ -1,22 +1,12 @@
-body {
-  padding-top: 50px;
-}
-/*
- * Style tweaks
- * --------------------------------------------------
- */
-html,
-body {
+html, body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
   height: 100%;
   padding: 0;
   margin: 0;
 }
+
 body {
   padding-top: 70px;
-}
-footer {
-  padding: 30px 0;
 }
 
 .container-fluid{
@@ -83,7 +73,6 @@ footer {
     transition: all .25s ease-out;
     background-color: #e6e6e8;
     padding-left: 25%;
-
   }
 
   .row-offcanvas.active .content {
@@ -138,10 +127,7 @@ footer {
     top: 0;
     width: 50%; /* 6 columns */
   }
-
-
 }
-
 
 .header {
   background-color: #300032;
@@ -150,7 +136,6 @@ footer {
   padding-bottom: 10px;
   margin: 0;
 }
-
 
 .header div.logo {
   margin-left: 10px;
@@ -169,8 +154,6 @@ footer {
 .header-right {
   margin: 0 10px 0 auto;
 }
-
-
 
 .properties{
   width: 100%;

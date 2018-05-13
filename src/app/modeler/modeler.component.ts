@@ -1,12 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PropertiesComponent} from "../properties/properties.component";
+import {Component, OnInit} from '@angular/core';
 import * as jQuery from 'jquery';
-import * as _ from 'lodash';
-import * as $ from 'backbone';
 const joint = require('../../../node_modules/jointjs/dist/joint.js');
 import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
-
-
 
 @Component({
   selector: 'app-modeler',
@@ -15,30 +10,38 @@ import {PlaygrounddetectorService} from "../service/playgrounddetector.service";
 })
 export class ModelerComponent implements OnInit {
 
-  graph:any;
+  // JointJS Element declaration
   rect:any;
   level0:any;
   level1:any;
   level2:any;
+  entity1:any;
+  entity2:any;
+  attribute1:any;
+  attribute2: any;
+  method1:any;
+  // Counter for Mockup Demo Scenario
   levelcount:number;
   deepmodelcount:number;
   entitycount:number;
-  entity1;
-  entity2;
-  element:any;
+  attributecount:number;
+  methodcount:number;
+  element:any; // General Element Storage
   activeCell:any;
 
 
-  constructor(private PlaygroundService: PlaygrounddetectorService) {
-
-  }
+  constructor(private PlaygroundService: PlaygrounddetectorService) {}
 
   ngOnInit() {
+
+    const that = this;
     this.levelcount = 0;
     this.deepmodelcount = 0;
     this.entitycount = 0;
-    //this.graph = new joint.dia.Graph;
+    this.attributecount = 0;
+    this.methodcount = 0;
 
+    // JointJS Paper Background
     let paper = new joint.dia.Paper({
       el: jQuery("#paper"),
       width: 1500,
@@ -47,6 +50,7 @@ export class ModelerComponent implements OnInit {
       gridSize: 1
     });
 
+    // JointJS Element Definition
     this.rect = new joint.shapes.standard.HeaderedRectangle({
       position: { x: 250, y: 10 },
       type: 'deepmodel',
@@ -58,7 +62,6 @@ export class ModelerComponent implements OnInit {
         headerText:{ text: 'PizzaModel', fill:'black'},
       }
     });
-
     this.level0 = new joint.shapes.standard.HeaderedRectangle({
       position: { x: 250, y: 60 },
       type: 'level',
@@ -70,7 +73,6 @@ export class ModelerComponent implements OnInit {
         headerText:{ text: 'Level O0', fill:'black'},
       }
     });
-
     this.level1 = new joint.shapes.standard.HeaderedRectangle({
       position: { x: 250, y: 210 },
       type: 'level',
@@ -101,10 +103,9 @@ export class ModelerComponent implements OnInit {
         root: { title: 'Entity'},
         body:{fill: 'white'},
         header:{ fill: 'white'},
-        headerText:{ text: 'Pizza', fill:'black'},
+        headerText:{ text: 'PizzaType', fill:'black'},
       }
     });
-
     this.entity2 = new joint.shapes.standard.HeaderedRectangle({
       position: { x: 600, y: 100 },
       type: 'entity',
@@ -113,22 +114,39 @@ export class ModelerComponent implements OnInit {
         root: { title: 'Entity'},
         body:{fill: 'white'},
         header:{ fill: 'white'},
-        headerText:{ text: 'Pizza', fill:'black'},
+        headerText:{ text: 'ToppingType', fill:'black'},
+      }
+    });
+    this.attribute1 = new joint.shapes.standard.Rectangle({
+      position: { x: 270, y: 130 },
+      type: 'attribute',
+      size: { width: 200, height: 20 },
+      attrs: {
+        body:{fill: 'white'},
+        label:{ text: 'Size = 3'},
+      }
+    });
+    this.method1 = new joint.shapes.standard.Rectangle({
+      position: { x: 270, y: 150 },
+      type: 'method',
+      size: { width: 200, height: 20 },
+      attrs: {
+        body:{fill: 'white'},
+        label:{ text: 'doIt()'},
       }
     });
 
-    let that = this;
-
+    // Trigger Action if JointJS Element is clicked
     paper.on('cell:pointerdown',
       function(cellView, evt, x, y) {
         that.PlaygroundService.clickElement(cellView);
         that.activeCell = cellView;
-    }
+      }
     );
   }
 
+  // Instantiate Element on the Paper (triggered from Palette)
   instantiate(element) {
-
     if (element == 'deepmodel') {
       if(this.deepmodelcount < 1)
       {
@@ -183,12 +201,64 @@ export class ModelerComponent implements OnInit {
         alert("Select a Level");
       }
     }
-
+    if(element == 'attribute')
+    {
+      if(this.PlaygroundService.getActiveElementType() == 'entity') {
+        switch (this.attributecount) {
+          case 0: {
+            this.element = this.attribute1;
+            break;
+          }
+        }
+        this.attributecount++;
+      }
+      else{
+        alert("Select an Entity");
+      }
+    }
+    if(element == 'method')
+    {
+      if(this.PlaygroundService.getActiveElementType() == 'entity') {
+        switch (this.methodcount) {
+          case 0: {
+            this.element = this.method1;
+            break;
+          }
+        }
+        this.methodcount++;
+      }
+      else{
+        alert("Select an Entity");
+      }
+    }
+    if(element == 'connection')
+    {
+      if(this.entitycount>0)
+      {
+        console.log("connect");
+        this.link(this.entity1, this.entity2,  'has');
+      }
+      else {
+        alert("Add two Entities");
+      }
+    }
 
     if(this.element != null) {
       this.PlaygroundService.addElement(this.element);
       this.PlaygroundService.graph.addCell(this.element);
       this.element = null;
     }
+  }
+
+  link(source, target, label) {
+
+    var cell = new joint.shapes.fsa.Arrow({
+      type: 'connection',
+      source: { id: source.id },
+      target: { id: target.id },
+      labels: [{ position: .5, attrs: { text: { text: label || '', 'font-weight': 'bold' } } }]
+    });
+    this.PlaygroundService.graph.addCell(cell);
+    return cell;
   }
 }

@@ -21,3 +21,7 @@ A Mockup for enabling DeepModeling in a Cloud Based Approach.
 1) Select a "DeepModel" from the Palette
 2) Click on the created DeepModel and select "Level" from the Palette
 3) Click on the created Level and select "Entity" from the Elements Tab in the Palette
+4) Add 2 Entities to the first Level
+5) Select an Entity and add an Attribute and a Method
+5) Click on the created Entity and select "Connection" from the Connect Tab in the Palette
+6) Change Names of Deep Model Elements or the Value of the Attribute

@@ -3,126 +3,119 @@
 
 
 
-    <div class="row properties_content">
-      <div class="col-sm-6 outline_editor">
-        <div class="panel panel-default">
-          <div class="panel-heading">DeepModel Outline</div>
-          <div class="panel-body">
-            <div class="treeview">
-              <ul>
-                <li><a href="#">DeepModel:</a>
-                  <ul>
-                    <li><a href="#">Level: O0</a>
-                      <ul>
-                        <li><a href="#">Entity:</a>
-                          <ul>
-                            <li><a href="#">Attribute: </a>
-                            <li><a href="#">Method: </a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a href="#">Entity:</a>
-                          <ul>
-                            <li><a href="#">Attribute: </a>
-                            <li><a href="#">Method: </a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Level: O1</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-      </div>
+  <div class="row properties_content">
+
+    <!-- Outline Editor (currently only design) -->
+    <div class="col-sm-6 outline_editor">
+      <div class="panel panel-default">
+        <div class="panel-heading">DeepModel Outline</div>
+        <div class="panel-body">
+          <div class="treeview">
+            <ul>
+              <li><a href="#">DeepModel:</a>
+                <ul>
+                  <li><a href="#">Level: O0</a>
+                    <ul>
+                      <li><a href="#">Entity:</a>
+                        <ul>
+                          <li><a href="#">Attribute: </a>
+                          <li><a href="#">Method: </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Entity:</a>
+                        <ul>
+                          <li><a href="#">Attribute: </a>
+                          <li><a href="#">Method: </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Level: O1</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-
-
-      <div class="col-sm-6">
-        <div class="emptytable" *ngIf="this.PlaygroundService.selectedType == undefined">
-
-          Please select a Deep Modeling element.
-
-        </div>
-        <!-- DeepModel Table -->
-        <table *ngIf="this.PlaygroundService.selectedType != undefined" class="table table-bordered table-hover" id="tab_logic">
-          <thead>
-          <tr>
-            <th class="text-center">
-              Properties {{this.PlaygroundService.getActiveElementType().toUpperCase() }}
-            </th>
-            <th class="text-center">
-              Value
-            </th>
-          </tr>
-          </thead>
-          <tbody [ngSwitch]="true">
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 1 || this.PlaygroundService.selectedType == 2 || this.PlaygroundService.selectedType == 3 || this.PlaygroundService.selectedType == 4">
-            <td>
-              <label or="usr">Name</label>
-            </td>
-            <td>
-              <input (change)="changeinput($event.target.value)" type="string"  value="{{this.PlaygroundService.getActiveElementName() }}" placeholder='Name' class="form-control"/>
-            </td>
-          </tr>
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 3">
-            <td>
-              <label or="usr">Potency</label>
-            </td>
-            <td>
-              <input type="number" placeholder='0' class="form-control"/>
-            </td>
-          </tr>
-
-
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
-            <td>
-              <label or="usr">Datatype</label>
-            </td>
-            <td>
-              <input type="string" placeholder='String' class="form-control"/>
-            </td>
-          </tr>
-
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
-            <td>
-              <label or="usr">Mutability</label>
-            </td>
-            <td>
-              <input type="number" placeholder='0' class="form-control"/>
-            </td>
-          </tr>
-
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
-            <td>
-              <label or="usr">Value</label>
-            </td>
-            <td>
-              <input type="number" placeholder='0' class="form-control"/>
-            </td>
-          </tr>
-
-          <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
-            <td>
-              <label or="usr">Durability</label>
-            </td>
-            <td>
-              <input type="number" placeholder='0' class="form-control"/>
-            </td>
-          </tr>
-
-
-          </tbody>
-        </table>
-
-
-
-
-
-
       </div>
     </div>
+
+    <div class="col-sm-6">
+      <div class="emptytable" *ngIf="this.PlaygroundService.selectedType == undefined">
+        Please select a Deep Modeling element.
+      </div>
+      <!-- DeepModel Table -->
+      <table *ngIf="this.PlaygroundService.selectedType != undefined" class="table table-bordered table-hover" id="tab_logic">
+        <thead>
+        <tr>
+          <th class="text-center">
+            Properties {{this.PlaygroundService.getActiveElementType().toUpperCase() }}
+          </th>
+          <th class="text-center">
+            Value
+          </th>
+        </tr>
+        </thead>
+        <tbody [ngSwitch]="true">
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 1 || this.PlaygroundService.selectedType == 2 || this.PlaygroundService.selectedType == 3 || this.PlaygroundService.selectedType == 4 || this.PlaygroundService.selectedType == 5">
+          <td>
+            <label or="usr">Name</label>
+          </td>
+          <td>
+            <input (change)="changeinput($event.target.value,1)" value="{{this.PlaygroundService.getActiveElementName() }}" placeholder='Name' class="form-control"/>
+          </td>
+        </tr>
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 3">
+          <td>
+            <label or="usr">Potency</label>
+          </td>
+          <td>
+            <input type="number" placeholder='0' class="form-control"/>
+          </td>
+        </tr>
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
+          <td>
+            <label or="usr">Datatype</label>
+          </td>
+          <td>
+            <input type="string" placeholder='String' class="form-control"/>
+          </td>
+        </tr>
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
+          <td>
+            <label or="usr">Mutability</label>
+          </td>
+          <td>
+            <input type="number" placeholder='0' class="form-control"/>
+          </td>
+        </tr>
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
+          <td>
+            <label or="usr">Value</label>
+          </td>
+          <td>
+            <input (change)="changeinput($event.target.value,2)" value="{{this.PlaygroundService.getActiveElementValue() }}" placeholder='0' class="form-control"/>
+          </td>
+        </tr>
+
+        <tr *ngSwitchCase="this.PlaygroundService.selectedType == 4">
+          <td>
+            <label or="usr">Durability</label>
+          </td>
+          <td>
+            <input type="number" placeholder='0' class="form-control"/>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
