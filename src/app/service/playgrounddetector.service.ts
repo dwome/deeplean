@@ -25,27 +25,21 @@ export class PlaygrounddetectorService {
       switch (this.activeElement.model.attributes.type) {
         case 'deepmodel': {
           return this.activeElement.model.attributes.attrs.headerText.text;
-          break;
         }
         case 'level': {
           return this.activeElement.model.attributes.attrs.headerText.text;
-          break;
         }
         case 'entity': {
           return this.activeElement.model.attributes.attrs.headerText.text;
-          break;
         }
         case 'attribute': {
           return this.activeElement.model.attributes.attrs.label.text.split('=')[0];
-          break;
         }
         case 'method': {
           return this.activeElement.model.attributes.attrs.label.text.split('(')[0];
-          break;
         }
         case 'connection': {
           return this.activeElement.model.attributes.labels[0].attrs.text.text;
-          break;
         }
       }
     }
